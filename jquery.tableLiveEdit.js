@@ -1,4 +1,4 @@
-/* jQuery.tableLiveEdit
+/* jQuery.tableLiveEdit.js
 * Documentation: http://jarrettmeyer.com/portfolio/jQuery-tableLiveEdit/ 
 * License: http://jarrettmeyer.com/license/
 * Version: 1.0.1
@@ -125,8 +125,7 @@
                 methods.ensureFormExists();
                 methods.registerAddLink();
                 methods.registerEditLinks();
-            }
-            )();
+            })();
         });
     };
 })(jQuery);
