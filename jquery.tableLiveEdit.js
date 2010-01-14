@@ -1,3 +1,8 @@
+/* jQuery.tableLiveEdit
+* Documentation: http://jarrettmeyer.com/portfolio/jQuery-tableLiveEdit/ 
+* License: http://jarrettmeyer.com/license/
+* Version: 1.0.1
+*/
 (function($) {
     $.fn.tableLiveEdit = function(settings) {
         var config = {
