@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableLiveEdit.Core", "TableLiveEdit.Core\TableLiveEdit.Core.csproj", "{03F8938A-5BD4-49D4-AF32-9E471836A59E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableLiveEdit.Web", "TableLiveEdit.Web\TableLiveEdit.Web.csproj", "{A30C5681-14B5-432C-B9B4-58962F231EA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03F8938A-5BD4-49D4-AF32-9E471836A59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03F8938A-5BD4-49D4-AF32-9E471836A59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03F8938A-5BD4-49D4-AF32-9E471836A59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03F8938A-5BD4-49D4-AF32-9E471836A59E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A30C5681-14B5-432C-B9B4-58962F231EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A30C5681-14B5-432C-B9B4-58962F231EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A30C5681-14B5-432C-B9B4-58962F231EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A30C5681-14B5-432C-B9B4-58962F231EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

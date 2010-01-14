@@ -1,0 +1,36 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head runat="server">
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <%= Url.IncludeCss("Site.css") %>
+    <%= Url.IncludeJs("jquery-1.3.2.min.js") %>
+    <%= Url.IncludeJs("jquery-ui-1.7.2.custom.min.js")%>
+</head>
+
+<body>
+    <div class="page">
+
+        <div id="header">
+            <div id="title">
+                
+            </div>
+              
+            <div id="menucontainer">
+                <ul id="menu">              
+                    <li><%= Html.ActionLink("Contacts", "Index", "Contacts")%></li>                    
+                </ul>
+            
+            </div>
+        </div>
+
+        <div id="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+            <div id="footer">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
