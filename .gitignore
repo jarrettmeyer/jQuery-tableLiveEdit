@@ -1,3 +1,12 @@
-aspnetmvc-example/
 rails-example/
 *.bat
+aspnetmvc-example/**/**/*.user
+aspnetmvc-example/**/**/**/*.user
+aspnetmvc-example/**/**/**/bin/**/*.*
+aspnetmvc-example/**/**/**/obj/**/*.*
+aspnetmvc-example/**/**/**/obj/**/**/*.*
+aspnetmvc-example/**/**/**/bin/*.*
+aspnetmvc-example/**/**/*.suo
+aspnetmvc-example/**/**/_ReSharper.*/*.*
+aspnetmvc-example/**/**/_ReSharper.*/**/*.*
+aspnetmvc-example/**/**/_ReSharper.*/**/**/*.*
