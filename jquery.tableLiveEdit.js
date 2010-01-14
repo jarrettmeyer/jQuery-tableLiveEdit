@@ -1,28 +1,23 @@
 /* jQuery.tableLiveEdit.js
 * Documentation: http://jarrettmeyer.com/portfolio/jQuery-tableLiveEdit/ 
 * License: http://jarrettmeyer.com/license/
-* Version: 1.0.1
+* Version: 1.0.2
 */
 (function($) {
     $.fn.tableLiveEdit = function(settings) {
         var config = {
             formId: "_tableLiveEdit",           // ID of the form created by the plugin
             modelId: "id",                      // ID of the element being added or edited (possibly a hidden field)
-
             addLink: "add-link",                // ID for the add link
             cancelButton: "live-edit-cancel",   // ID for the cancel button (generated)
             createButton: "live-edit-create",   // ID for the create button (generated)
             editLink: "edit-link",              // Class for the edit links
             rowPrefix: "row-",                  // Row prefix for each <tr id="?"> value
             updateButton: "live-edit-update",   // ID for the update button	(generated)
-
-            getEdit: "./edit",      // GET url path to return a single row edit template
-            getNew: "./new",        // GET url path to return a new row edit template
-            getRow: "./show",       // GET url path to return a single row
-            postCreate: "./create", // POST url path to create a new row
-            putUpdate: "./udpate",  // PUT url path to update an existing row
+            createPath: "./create",
+            showPath: "./show/{0}",
+            updatePath: "./{0}/update",
             usePostUpdate: false,   // Should the update URL be called with a POST request, instead of a PUT request
-
             useHighlight: false
         };
         if (settings) { $.extend(config, settings); }
@@ -30,11 +25,6 @@
             var table = $(this);
             (function() {
                 var methods = {
-                    prepConfig: function() {
-                        if (!config.getEdit.match(/\/$/)) { config.getEdit += "/"; }
-                        if (!config.getNew.match(/\/$/)) { config.getNew += "/"; }
-                        if (!config.getRow.match(/\/$/)) { config.getRow += "/"; }
-                    },
                     ensureFormExists: function() {
                         var forms = $(this).parents("form");
                         if (forms.length === 0) {
@@ -45,8 +35,9 @@
                         $("#" + config.addLink).unbind("click");
                         $("#" + config.addLink).click(function(e) {
                             e.preventDefault();
+                            var url = $(this).attr("href");
                             methods.hideEditLinks();
-                            $.get(config.getNew, {}, function(html) {
+                            $.get(url, {}, function(html) {
                                 $("tbody").append(html);
                                 methods.registerCreateButton();
                                 methods.registerCancelButton();
@@ -59,7 +50,7 @@
                             var rowId = $("#" + config.modelId).val();
                             var selector = "#" + config.rowPrefix + rowId;
                             if (rowId > 0) {
-                                $.get(config.getRow + rowId, {}, function(html) {
+                                $.get(config.showPath.replace("{0}", rowId), {}, function(html) {
                                     $(selector).replaceWith(html);
                                 });
                             } else {
@@ -70,7 +61,7 @@
                     },
                     registerCreateButton: function() {
                         $("#" + config.createButton).click(function(e) {
-                            methods.submitForm(this, e, config.postCreate, true);
+                            methods.submitForm(this, e, config.createPath, true);
                         });
                     },
                     registerEditLinks: function() {
@@ -78,9 +69,10 @@
                         $("." + config.editLink).click(function(e) {
                             e.preventDefault();
                             methods.hideEditLinks();
+                            var url = $(this).attr("href");
                             var row = $(this).parents("tr");
                             var rowId = row[0].id.match(/(\d+)/)[1];
-                            $.get(config.getEdit + rowId, {}, function(html) {
+                            $.get(url, {}, function(html) {
                                 row.replaceWith(html);
                                 methods.registerCancelButton();
                                 methods.registerUpdateButton();
@@ -89,7 +81,8 @@
                     },
                     registerUpdateButton: function() {
                         $("#" + config.updateButton).click(function(e) {
-                            methods.submitForm(this, e, config.putUpdate, false);
+                            var id = $(this).parents("tr")[0].id.match(/(\d+)/)[1];
+                            methods.submitForm(this, e, config.updatePath.replace("{0}", id), false);
                         });
                     },
                     submitForm: function(element, event, url, isNew) {
@@ -120,8 +113,7 @@
                         $("#" + config.addLink).parents("tr").hide();
                         $("." + config.editLink).hide();
                     }
-                };
-                methods.prepConfig();
+                };                
                 methods.ensureFormExists();
                 methods.registerAddLink();
                 methods.registerEditLinks();
