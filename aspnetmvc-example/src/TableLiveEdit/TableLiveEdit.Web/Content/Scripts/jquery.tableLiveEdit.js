@@ -86,7 +86,6 @@
                             methods.hideEditLinks();
                             var url = $(this).attr("href");
                             var row = $(this).parents("tr");
-                            var rowId = row[0].id.match(/(\d+)/)[1];
                             $.get(url, {}, function(html) {
                                 row.replaceWith(html);
                                 methods.registerCancelButton();
