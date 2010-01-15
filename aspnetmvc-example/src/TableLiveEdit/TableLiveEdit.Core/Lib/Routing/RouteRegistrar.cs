@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace TableLiveEdit.Core.Lib.Routing
@@ -11,6 +7,8 @@ namespace TableLiveEdit.Core.Lib.Routing
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
             const string defaultResource = "Home";
             routes.MapRoute("CreateResource", "{controller}", new { controller = defaultResource, action = "Create", id = string.Empty }, new { method = new HttpMethodConstraint("POST") });
             routes.MapRoute("DeleteResource", "{controller}/{id}", new { controller = defaultResource, action = "Delete", id = 0 }, new { id = @"\d+", method = new HttpMethodConstraint("DELETE") });

@@ -12,9 +12,9 @@
                 modelId: "ContactId",
                 rowPrefix: "contact-",
                 useHighlight: false,
-                createPath: '/Contacts',
-                showPath: '/Contacts/{0}',
-                updatePath: '/Contacts/{0}',
+                createPath: '/tableLiveEdit/Contacts',
+                showPath: '/tableLiveEdit/Contacts/{0}',
+                updatePath: '/tableLiveEdit/Contacts/{0}',
                 deleteConfirmation: 'You are about to delete a contact. This operation cannot be undone. Are you absolutely sure you wish to continue?'
             };
             $("#contacts").tableLiveEdit(options);
@@ -31,10 +31,10 @@
     <table id="contacts">
         <thead>
             <tr>            
-                <td>First Name</td>
-                <td>Last Name</td>
-                <td>Email Address</td>
-                <td>&nbsp;</td>
+                <td style="width:28%;">First Name</td>
+                <td style="width:28%;">Last Name</td>
+                <td style="width:28%;">Email Address</td>
+                <td style="width:15%;">&nbsp;</td>
             </tr>
         </thead>
         <tbody>
