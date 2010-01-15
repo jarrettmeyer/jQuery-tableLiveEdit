@@ -4,20 +4,20 @@
 	Contacts
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">    
     <%= Url.IncludeJs("jquery.tableLiveEdit.js") %>
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript" language="javascript">        
         $(function() {
             var options = {
                 modelId: "ContactId",
                 rowPrefix: "contact-",
-                useHighlight: false,
+                useHighlight: true,
                 createPath: '/tableLiveEdit/Contacts',
                 showPath: '/tableLiveEdit/Contacts/{0}',
                 updatePath: '/tableLiveEdit/Contacts/{0}',
                 deleteConfirmation: 'You are about to delete a contact. This operation cannot be undone. Are you absolutely sure you wish to continue?'
             };
-            $("#contacts").tableLiveEdit(options);
+            $("#contacts").tableLiveEdit(options);            
         });
     </script>
 
