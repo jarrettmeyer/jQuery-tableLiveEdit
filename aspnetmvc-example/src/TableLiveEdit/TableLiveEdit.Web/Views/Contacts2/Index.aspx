@@ -12,9 +12,9 @@
                 modelId: "ContactId",
                 rowPrefix: "contact-",
                 useHighlight: true,
-                createPath: '/tableLiveEdit/Contacts',
-                showPath: '/tableLiveEdit/Contacts/{0}',
-                updatePath: '/tableLiveEdit/Contacts/{0}',
+                createPath: '/tableLiveEdit/Contacts2',
+                showPath: '/tableLiveEdit/Contacts2/{0}',
+                updatePath: '/tableLiveEdit/Contacts2/{0}',
                 deleteConfirmation: 'You are about to delete a contact. This operation cannot be undone. Are you absolutely sure you wish to continue?'
             };
             $("#contacts").tableLiveEdit(options);            
@@ -22,6 +22,11 @@
     </script>
 
     <h2>Contacts</h2>
+    
+    <p>
+        This demo shows that the new and edit templates can really be anything that fits in a table. In this example, there is
+        a more "standard" web (not tabular) form.
+    </p>
 
     <table id="contacts">
         <thead>

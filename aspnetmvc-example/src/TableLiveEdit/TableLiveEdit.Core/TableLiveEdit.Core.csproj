@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
+    <Compile Include="Controllers\Contacts2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Lib\Data\IRepository.cs" />
     <Compile Include="Lib\Data\LinqToSqlRepository.cs" />
