@@ -11,6 +11,8 @@
             addLink: "add-link",                // ID for the add link
             cancelButton: "live-edit-cancel",   // ID for the cancel button (generated)
             createButton: "live-edit-create",   // ID for the create button (generated)
+            deleteLink: "delete-link",          // Class for delete links
+            deleteConfirmation: "You are about to delete a row. This is permanent. Are you absolutely sure?",
             editLink: "edit-link",              // Class for the edit links
             rowPrefix: "row-",                  // Row prefix for each <tr id="?"> value
             updateButton: "live-edit-update",   // ID for the update button	(generated)
@@ -64,6 +66,19 @@
                             methods.submitForm(this, e, config.createPath, true);
                         });
                     },
+                    registerDeleteLinks: function() {
+                        $("." + config.deleteLink).unbind("click");
+                        $("." + config.deleteLink).click(function(e) {
+                        e.preventDefault();
+                            if (config.deleteConfirmation && !window.confirm(config.deleteConfirmation)) { return false; }                            
+                            var link = $(this);
+                            $.ajax({
+                                type: "delete",
+                                url: link.attr("href")
+                            });
+                            link.parents("tr").remove();
+                        });
+                    },
                     registerEditLinks: function() {
                         $("." + config.editLink).unbind("click");
                         $("." + config.editLink).click(function(e) {
@@ -102,21 +117,25 @@
                                 if (config.useHighlight) { $(flashRow).effect("highlight", {}, 3000); }
                                 methods.showEditLinks();
                                 methods.registerEditLinks();
+                                methods.registerDeleteLinks();
                             }
                         });
                     },
                     showEditLinks: function() {
                         $("#" + config.addLink).parents("tr").show();
                         $("." + config.editLink).show();
+                        $("." + config.deleteLink).show();
                     },
                     hideEditLinks: function() {
                         $("#" + config.addLink).parents("tr").hide();
                         $("." + config.editLink).hide();
+                        $("." + config.deleteLink).hide();
                     }
-                };                
+                };
                 methods.ensureFormExists();
                 methods.registerAddLink();
                 methods.registerEditLinks();
+                methods.registerDeleteLinks();
             })();
         });
     };
