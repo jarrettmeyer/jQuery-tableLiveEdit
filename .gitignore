@@ -2,6 +2,7 @@ rails-example/
 *.bat
 aspnetmvc-example/**/**/*.user
 aspnetmvc-example/**/**/**/*.user
+aspnetmvc-example/**/**/**/*.Publish.xml
 aspnetmvc-example/**/**/**/bin/**/*.*
 aspnetmvc-example/**/**/**/obj/**/*.*
 aspnetmvc-example/**/**/**/obj/**/**/*.*
