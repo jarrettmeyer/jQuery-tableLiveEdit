@@ -54,6 +54,8 @@
                             if (rowId > 0) {
                                 $.get(config.showPath.replace("{0}", rowId), {}, function(html) {
                                     $(selector).replaceWith(html);
+                                    methods.registerEditLinks();
+                                    methods.registerDeleteLinks();
                                 });
                             } else {
                                 $(selector).remove();
@@ -69,8 +71,8 @@
                     registerDeleteLinks: function() {
                         $("." + config.deleteLink).unbind("click");
                         $("." + config.deleteLink).click(function(e) {
-                        e.preventDefault();
-                            if (config.deleteConfirmation && !window.confirm(config.deleteConfirmation)) { return false; }                            
+                            e.preventDefault();
+                            if (config.deleteConfirmation && !window.confirm(config.deleteConfirmation)) { return false; }
                             var link = $(this);
                             $.ajax({
                                 type: "delete",
