@@ -14,9 +14,15 @@
                 useHighlight: false,
                 createPath: '/Contacts',
                 showPath: '/Contacts/{0}',
-                updatePath: '/Contacts/{0}'
+                updatePath: '/Contacts/{0}',
+                deleteConfirmation: 'You are about to delete a contact. This operation cannot be undone. Are you absolutely sure you wish to continue?'
             };
             $("#contacts").tableLiveEdit(options);
+            $(".delete-link").click(function() {
+                var path = $(this).attr("href");
+                var row = $(this).parents("tr");
+                $.ajax({ url: path, method: "DELETE" });
+            });
         });
     </script>
 

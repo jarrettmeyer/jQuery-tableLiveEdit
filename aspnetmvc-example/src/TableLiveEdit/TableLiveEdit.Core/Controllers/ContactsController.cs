@@ -29,10 +29,14 @@ namespace TableLiveEdit.Core.Controllers
         public ActionResult Delete(int id)
         {
             var contact = _repository.FindSingle<Contact>(c => c.ContactId == id);
-            if (contact == null) return RedirectToAction("Error");
+            if (contact == null)
+            {
+                if (Request.IsAjaxRequest()) Json(string.Format("Could not delete record with ID {0}", id));
+                return RedirectToAction("Error");
+            }
             _repository.Delete(contact);
             _repository.Commit();
-            if (Request.IsAjaxRequest()) return new EmptyResult();
+            if (Request.IsAjaxRequest()) return Json(string.Format("Record {0} successfully deleted", id));
             return RedirectToAction("Index");
         }
 

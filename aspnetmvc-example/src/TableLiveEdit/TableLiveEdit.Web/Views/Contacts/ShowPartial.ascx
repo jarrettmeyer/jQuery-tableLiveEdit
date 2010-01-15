@@ -3,6 +3,9 @@
     <td><%= Html.Encode(Model.FirstName) %></td>
     <td><%= Html.Encode(Model.LastName) %></td>
     <td><%= Html.Encode(Model.EmailAddress) %></td>
-    <td><%= Html.ActionLink("Edit", "Edit", new { id = Model.ContactId }, new { @class = "edit-link" }) %></td>
+    <td>
+        <%= Html.ActionLink("Edit", "Edit", new { id = Model.ContactId }, new { @class = "edit-link" }) %> |
+        <%= Html.ActionLink("Delete", "Delete", new { id = Model.ContactId }, new { @class = "delete-link" }) %>
+    </td>
 </tr>
 
