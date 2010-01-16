@@ -5,8 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">    
-    <%= Url.IncludeJs("jquery.tableLiveEdit.pack.js") %>
-    <script type="text/javascript" language="javascript">        
+    <%= Url.IncludeJs("jquery.tableLiveEdit.js") %>
+    <script type="text/javascript" language="javascript">
         $(function() {
             var options = {
                 modelId: "ContactId",
@@ -43,6 +43,18 @@
             </tr>
         </tfoot>
     </table>
+    
+    <p>
+        The jQuery plugin raises an event called "tableLiveEdit.formLoaded" on the wrapper
+        form. (The default form is named "_tableLiveEdit", but this value can be configured.)
+        You can write your javascript to listen to the event in the following manner. This
+        allows you to use other tools, such a jQuery form validation.
+    </p>
+    <pre>
+$("_tableLiveEdit").bind("tableLiveEdit.formLoaded", function() {<br />
+    alert("a new form was loaded");<br />
+});<br />
+    </pre>
 
 </asp:Content>
 
