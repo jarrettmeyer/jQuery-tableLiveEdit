@@ -34,9 +34,6 @@
                             table.wrap("<form action=\"\" method=\"post\" id=\"" + config.formId + "\"></form>");
                         }
                     },
-                    raiseFormLoaded: function() {
-                        $("#" + config.formId).trigger("tableLiveEdit.formLoaded");
-                    },
                     registerAddLink: function() {
                         $("#" + config.addLink).live("click", function(e) {
                             e.preventDefault();
@@ -44,7 +41,7 @@
                             methods.hideEditLinks();
                             $.get(url, {}, function(html) {
                                 $("tbody").append(html);
-                                methods.raiseFormLoaded();
+                                $("#" + config.formId).trigger("tableLiveEdit.addFormLoaded");
                                 methods.registerCreateButton();
                                 methods.registerCancelButton();
                             });
@@ -91,7 +88,7 @@
                             var row = $(this).parents("tr");
                             $.get(url, {}, function(html) {
                                 row.replaceWith(html);
-                                methods.raiseFormLoaded();
+                                $("#" + config.formId).trigger("tableLiveEdit.editFormLoaded");
                                 methods.registerCancelButton();
                                 methods.registerUpdateButton();
                             });
