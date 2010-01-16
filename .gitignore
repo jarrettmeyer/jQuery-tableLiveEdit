@@ -9,5 +9,6 @@ aspnetmvc-example/**/**/**/obj/**/**/*.*
 aspnetmvc-example/**/**/**/bin/*.*
 aspnetmvc-example/**/**/*.suo
 aspnetmvc-example/**/**/_ReSharper.*/*.*
+aspnetmvc-example/**/**/_ReSharper.*/**/*
 aspnetmvc-example/**/**/_ReSharper.*/**/*.*
 aspnetmvc-example/**/**/_ReSharper.*/**/**/*.*
