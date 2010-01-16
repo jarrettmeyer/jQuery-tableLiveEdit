@@ -56,7 +56,7 @@ namespace TableLiveEdit.Core.Controllers
             return View(contacts);
         }
 
-        [AcceptVerbs(HttpVerbs.Get)]
+        [AcceptVerbs(HttpVerbs.Get), OutputCache(Duration = 120, VaryByParam = "*")]
         public ActionResult New()
         {
             var contact = new Contact();
