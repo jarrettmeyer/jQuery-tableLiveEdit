@@ -17,7 +17,16 @@
                 updatePath: '/tableLiveEdit/Contacts/{0}',
                 deleteConfirmation: 'You are about to delete a contact. This operation cannot be undone. Are you absolutely sure you wish to continue?'
             };
-            $("#contacts").tableLiveEdit(options);            
+            $("#contacts").tableLiveEdit(options);
+            //$("#_tableLiveEdit").bind("tableLiveEdit.addFormLoaded", function() {
+            //    alert("new add form loaded");
+            //});
+            //$("#_tableLiveEdit").bind("tableLiveEdit.editFormLoaded", function() {
+            //    alert("new edit form loaded");
+            //});
+            //$("#_tableLiveEdit").bind("tableLiveEdit.formUnloaded", function() {
+            //    alert("form unloaded");
+            //});
         });
     </script>
 
@@ -43,18 +52,6 @@
             </tr>
         </tfoot>
     </table>
-    
-    <p>
-        The jQuery plugin raises an event called "tableLiveEdit.formLoaded" on the wrapper
-        form. (The default form is named "_tableLiveEdit", but this value can be configured.)
-        You can write your javascript to listen to the event in the following manner. This
-        allows you to use other tools, such a jQuery form validation.
-    </p>
-    <pre>
-$("_tableLiveEdit").bind("tableLiveEdit.formLoaded", function() {<br />
-    alert("a new form was loaded");<br />
-});<br />
-    </pre>
 
 </asp:Content>
 
