@@ -1,7 +1,7 @@
 /* jQuery.tableLiveEdit.js
 * Documentation: http://jarrettmeyer.com/portfolio/jQuery-tableLiveEdit/ 
 * License: http://jarrettmeyer.com/license/
-* Version: 1.0.2
+* Version: 1.0.3
 */
 (function($) {
     $.fn.tableLiveEdit = function(settings) {
@@ -12,13 +12,14 @@
             cancelButton: "live-edit-cancel",   // ID for the cancel button (generated)
             createButton: "live-edit-create",   // ID for the create button (generated)
             deleteLink: "delete-link",          // Class for delete links
-            deleteConfirmation: "You are about to delete a row. This is permanent. Are you absolutely sure?",
+            deleteConfirmation: "Are you sure?",
             editLink: "edit-link",              // Class for the edit links
             rowPrefix: "row-",                  // Row prefix for each <tr id="?"> value
             updateButton: "live-edit-update",   // ID for the update button	(generated)
             createPath: "./create",
             showPath: "./show/{0}",
             updatePath: "./{0}/update",
+            usePostDelete: false,   // Should the delete URL be called with a POST request, instead of a DELETE request
             usePostUpdate: false,   // Should the update URL be called with a POST request, instead of a PUT request
             useHighlight: false
         };
@@ -34,8 +35,7 @@
                         }
                     },
                     registerAddLink: function() {
-                        $("#" + config.addLink).unbind("click");
-                        $("#" + config.addLink).click(function(e) {
+                        $("#" + config.addLink).live("click", function(e) {
                             e.preventDefault();
                             var url = $(this).attr("href");
                             methods.hideEditLinks();
@@ -54,8 +54,6 @@
                             if (rowId > 0) {
                                 $.get(config.showPath.replace("{0}", rowId), {}, function(html) {
                                     $(selector).replaceWith(html);
-                                    methods.registerEditLinks();
-                                    methods.registerDeleteLinks();
                                 });
                             } else {
                                 $(selector).remove();
@@ -69,21 +67,20 @@
                         });
                     },
                     registerDeleteLinks: function() {
-                        $("." + config.deleteLink).unbind("click");
-                        $("." + config.deleteLink).click(function(e) {
+                        $("." + config.deleteLink).live("click", function(e) {
                             e.preventDefault();
                             if (config.deleteConfirmation && !window.confirm(config.deleteConfirmation)) { return false; }
                             var link = $(this);
+                            var requestType = config.usePostDelete ? "post" : "delete";
                             $.ajax({
-                                type: "delete",
+                                type: requestType,
                                 url: link.attr("href")
                             });
                             link.parents("tr").remove();
                         });
                     },
                     registerEditLinks: function() {
-                        $("." + config.editLink).unbind("click");
-                        $("." + config.editLink).click(function(e) {
+                        $("." + config.editLink).live("click", function(e) {
                             e.preventDefault();
                             methods.hideEditLinks();
                             var url = $(this).attr("href");
@@ -117,8 +114,6 @@
                                 var flashRow = isNew ? "tbody tr:last" : selector;
                                 if (config.useHighlight) { $(flashRow).effect("highlight", {}, 3000); }
                                 methods.showEditLinks();
-                                methods.registerEditLinks();
-                                methods.registerDeleteLinks();
                             }
                         });
                     },
