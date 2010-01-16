@@ -27,6 +27,8 @@
         return this.each(function() {
             var table = $(this);
             (function() {
+                var formLoaded = false;
+                var formSelector = '';
                 var methods = {
                     ensureFormExists: function() {
                         var forms = $(this).parents("form");
@@ -41,6 +43,8 @@
                             methods.hideEditLinks();
                             $.get(url, {}, function(html) {
                                 $("tbody").append(html);
+                                $(formSelector).trigger("tableLiveEdit.addFormLoaded");
+                                formLoaded = true;
                                 methods.registerCreateButton();
                                 methods.registerCancelButton();
                             });
@@ -59,6 +63,8 @@
                                 $(selector).remove();
                             }
                             methods.showEditLinks();
+                            $(formSelector).trigger("tableLiveEdit.formUnloaded");
+                            formLoaded = false;
                         });
                     },
                     registerCreateButton: function() {
@@ -87,6 +93,8 @@
                             var row = $(this).parents("tr");
                             $.get(url, {}, function(html) {
                                 row.replaceWith(html);
+                                $(formSelector).trigger("tableLiveEdit.editFormLoaded");
+                                formLoaded = true;
                                 methods.registerCancelButton();
                                 methods.registerUpdateButton();
                             });
@@ -100,7 +108,7 @@
                     },
                     submitForm: function(element, event, url, isNew) {
                         event.preventDefault();
-                        var formData = $("#" + config.formId).serialize();
+                        var formData = $(formSelector).serialize();
                         var rowId = $("#" + config.modelId).val();
                         var selector = "#" + config.rowPrefix + rowId;
                         var requestType = (isNew || config.usePostUpdate) ? "post" : "put";
@@ -114,6 +122,8 @@
                                 var flashRow = isNew ? "tbody tr:last" : selector;
                                 if (config.useHighlight) { $(flashRow).effect("highlight", {}, 3000); }
                                 methods.showEditLinks();
+                                $(formSelector).trigger("tableLiveEdit.formUnloaded");
+                                formLoaded = false;
                             }
                         });
                     },
@@ -128,6 +138,7 @@
                         $("." + config.deleteLink).hide();
                     }
                 };
+                formSelector = "#" + config.formId;
                 methods.ensureFormExists();
                 methods.registerAddLink();
                 methods.registerEditLinks();
