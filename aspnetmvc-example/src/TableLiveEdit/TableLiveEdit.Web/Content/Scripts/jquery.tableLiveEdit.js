@@ -1,12 +1,13 @@
 /* jQuery.tableLiveEdit.js
 * Documentation: http://jarrettmeyer.com/portfolio/jQuery-tableLiveEdit/ 
 * License: http://jarrettmeyer.com/license/
-* Version: 1.0.3
+* Version: 1.0.4
 */
 (function($) {
     $.fn.tableLiveEdit = function(settings) {
         var config = {
-            formId: "_tableLiveEdit",           // ID of the form created by the plugin
+            addFormId: "tableLiveEdit-addForm",  // ID of the add form created by the plugin
+            editFormId: "tableLiveEdit-editForm", // ID of the edit form created by the plugin
             modelId: "id",                      // ID of the element being added or edited (possibly a hidden field)
             addLink: "add-link",                // ID for the add link
             cancelButton: "live-edit-cancel",   // ID for the cancel button (generated)
@@ -30,15 +31,25 @@
                 var formLoaded = false;
                 var formSelector = '';
                 var methods = {
-                    ensureFormExists: function() {
-                        var forms = $(this).parents("form");
+                    createForm: function(formId) {
+                        var forms = table.parents("form");
                         if (forms.length === 0) {
-                            table.wrap("<form action=\"\" method=\"post\" id=\"" + config.formId + "\"></form>");
+                            table.wrap("<form action=\"\" method=\"post\" id=\"" + formId + "\"></form>");
+                            formLoaded = true;
+                            formSelector = "#" + formId;
+                        } else if (forms.length === 1) {
+                            forms.attr("id", formId);
+                            formLoaded = true;
+                            formSelector = "#" + formId;
+                        } else {
+                            formLoaded = false;
+                            formSelector = "";
                         }
                     },
                     registerAddLink: function() {
                         $("#" + config.addLink).live("click", function(e) {
                             e.preventDefault();
+                            methods.createForm(config.addFormId);
                             var url = $(this).attr("href");
                             methods.hideEditLinks();
                             $.get(url, {}, function(html) {
@@ -88,6 +99,7 @@
                     registerEditLinks: function() {
                         $("." + config.editLink).live("click", function(e) {
                             e.preventDefault();
+                            methods.createForm(config.editFormId);
                             methods.hideEditLinks();
                             var url = $(this).attr("href");
                             var row = $(this).parents("tr");
@@ -138,8 +150,6 @@
                         $("." + config.deleteLink).hide();
                     }
                 };
-                formSelector = "#" + config.formId;
-                methods.ensureFormExists();
                 methods.registerAddLink();
                 methods.registerEditLinks();
                 methods.registerDeleteLinks();

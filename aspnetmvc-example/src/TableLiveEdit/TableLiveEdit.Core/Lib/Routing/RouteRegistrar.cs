@@ -11,7 +11,7 @@ namespace TableLiveEdit.Core.Lib.Routing
 
             const string defaultResource = "Home";
             routes.MapRoute("CreateResource", "{controller}", new { controller = defaultResource, action = "Create", id = string.Empty }, new { method = new HttpMethodConstraint("POST") });
-            routes.MapRoute("DeleteResource", "{controller}/{id}", new { controller = defaultResource, action = "Delete", id = 0 }, new { id = @"\d+", method = new HttpMethodConstraint("DELETE") });
+            routes.MapRoute("DeleteResource", "{controller}/{id}", new { controller = defaultResource, action = "Delete", id = 0 }, new { id = @"\d+", method = new HttpMethodConstraint("DELETE", "POST") });
             routes.MapRoute("EditResource", "{controller}/{id}/Edit", new { controller = defaultResource, action = "Edit", id = 0 }, new { id = @"\d+", method = new HttpMethodConstraint("GET") });
             routes.MapRoute("IndexResource", "{controller}", new { controller = defaultResource, action = "Index", id = string.Empty }, new { method = new HttpMethodConstraint("GET") });
             routes.MapRoute("NewResource", "{controller}/New", new { controller = defaultResource, action = "New", id = 0 }, new { method = new HttpMethodConstraint("GET") });
