@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="TableLiveEdit" Class="TableLiveEditDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+<Database Name="Sample" Class="TableLiveEditDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLExpress;Initial Catalog=TableLiveEdit;Integrated Security=True" SettingsObjectName="TableLiveEdit.Core.Properties.Settings" SettingsPropertyName="TableLiveEditConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Contacts" Member="Contacts">
     <Type Name="Contact">
@@ -7,6 +7,18 @@
       <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="EmailAddress" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Requests" Member="Requests">
+    <Type Name="Request">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IpAddress" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HostName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Browser" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Platform" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstRequest" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastRequest" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

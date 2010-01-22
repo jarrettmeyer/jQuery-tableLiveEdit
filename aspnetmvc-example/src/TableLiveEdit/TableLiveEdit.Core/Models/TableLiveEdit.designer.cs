@@ -22,7 +22,7 @@ namespace TableLiveEdit.Core.Models
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="TableLiveEdit")]
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Sample")]
 	public partial class TableLiveEditDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,6 +33,9 @@ namespace TableLiveEdit.Core.Models
     partial void InsertContact(Contact instance);
     partial void UpdateContact(Contact instance);
     partial void DeleteContact(Contact instance);
+    partial void InsertRequest(Request instance);
+    partial void UpdateRequest(Request instance);
+    partial void DeleteRequest(Request instance);
     #endregion
 		
 		public TableLiveEditDataContext() : 
@@ -70,6 +73,14 @@ namespace TableLiveEdit.Core.Models
 			get
 			{
 				return this.GetTable<Contact>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Request> Requests
+		{
+			get
+			{
+				return this.GetTable<Request>();
 			}
 		}
 	}
@@ -183,6 +194,236 @@ namespace TableLiveEdit.Core.Models
 					this._EmailAddress = value;
 					this.SendPropertyChanged("EmailAddress");
 					this.OnEmailAddressChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Requests")]
+	public partial class Request : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _IpAddress;
+		
+		private int _Count;
+		
+		private string _HostName;
+		
+		private string _Browser;
+		
+		private string _Platform;
+		
+		private System.DateTime _FirstRequest;
+		
+		private System.DateTime _LastRequest;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnIpAddressChanging(string value);
+    partial void OnIpAddressChanged();
+    partial void OnCountChanging(int value);
+    partial void OnCountChanged();
+    partial void OnHostNameChanging(string value);
+    partial void OnHostNameChanged();
+    partial void OnBrowserChanging(string value);
+    partial void OnBrowserChanged();
+    partial void OnPlatformChanging(string value);
+    partial void OnPlatformChanged();
+    partial void OnFirstRequestChanging(System.DateTime value);
+    partial void OnFirstRequestChanged();
+    partial void OnLastRequestChanging(System.DateTime value);
+    partial void OnLastRequestChanged();
+    #endregion
+		
+		public Request()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IpAddress", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string IpAddress
+		{
+			get
+			{
+				return this._IpAddress;
+			}
+			set
+			{
+				if ((this._IpAddress != value))
+				{
+					this.OnIpAddressChanging(value);
+					this.SendPropertyChanging();
+					this._IpAddress = value;
+					this.SendPropertyChanged("IpAddress");
+					this.OnIpAddressChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Count", DbType="Int NOT NULL")]
+		public int Count
+		{
+			get
+			{
+				return this._Count;
+			}
+			set
+			{
+				if ((this._Count != value))
+				{
+					this.OnCountChanging(value);
+					this.SendPropertyChanging();
+					this._Count = value;
+					this.SendPropertyChanged("Count");
+					this.OnCountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HostName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string HostName
+		{
+			get
+			{
+				return this._HostName;
+			}
+			set
+			{
+				if ((this._HostName != value))
+				{
+					this.OnHostNameChanging(value);
+					this.SendPropertyChanging();
+					this._HostName = value;
+					this.SendPropertyChanged("HostName");
+					this.OnHostNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Browser", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Browser
+		{
+			get
+			{
+				return this._Browser;
+			}
+			set
+			{
+				if ((this._Browser != value))
+				{
+					this.OnBrowserChanging(value);
+					this.SendPropertyChanging();
+					this._Browser = value;
+					this.SendPropertyChanged("Browser");
+					this.OnBrowserChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Platform", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Platform
+		{
+			get
+			{
+				return this._Platform;
+			}
+			set
+			{
+				if ((this._Platform != value))
+				{
+					this.OnPlatformChanging(value);
+					this.SendPropertyChanging();
+					this._Platform = value;
+					this.SendPropertyChanged("Platform");
+					this.OnPlatformChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstRequest", DbType="DateTime NOT NULL")]
+		public System.DateTime FirstRequest
+		{
+			get
+			{
+				return this._FirstRequest;
+			}
+			set
+			{
+				if ((this._FirstRequest != value))
+				{
+					this.OnFirstRequestChanging(value);
+					this.SendPropertyChanging();
+					this._FirstRequest = value;
+					this.SendPropertyChanged("FirstRequest");
+					this.OnFirstRequestChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LastRequest", DbType="DateTime NOT NULL")]
+		public System.DateTime LastRequest
+		{
+			get
+			{
+				return this._LastRequest;
+			}
+			set
+			{
+				if ((this._LastRequest != value))
+				{
+					this.OnLastRequestChanging(value);
+					this.SendPropertyChanging();
+					this._LastRequest = value;
+					this.SendPropertyChanged("LastRequest");
+					this.OnLastRequestChanged();
 				}
 			}
 		}

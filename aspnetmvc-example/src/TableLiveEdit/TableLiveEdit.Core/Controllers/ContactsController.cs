@@ -25,7 +25,7 @@ namespace TableLiveEdit.Core.Controllers
             return RedirectToAction("Index");
         }
 
-        [AcceptVerbs(HttpVerbs.Delete)]
+        [AcceptVerbs(HttpVerbs.Delete), ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             var contact = _repository.FindSingle<Contact>(c => c.ContactId == id);

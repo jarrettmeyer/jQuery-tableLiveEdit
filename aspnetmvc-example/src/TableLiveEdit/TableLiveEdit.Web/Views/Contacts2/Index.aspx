@@ -15,7 +15,8 @@
                 createPath: '/tableLiveEdit/Contacts2',
                 showPath: '/tableLiveEdit/Contacts2/{0}',
                 updatePath: '/tableLiveEdit/Contacts2/{0}',
-                deleteConfirmation: 'You are about to delete a contact. This operation cannot be undone. Are you absolutely sure you wish to continue?'
+                deleteConfirmation: 'You are about to delete a contact. This operation cannot be undone. Are you absolutely sure you wish to continue?',
+                useAntiForgeryToken: true
             };
             $("#contacts").tableLiveEdit(options);            
         });

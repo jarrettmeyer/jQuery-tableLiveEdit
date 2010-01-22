@@ -46,6 +46,7 @@
     <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -67,6 +68,7 @@
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\Contacts2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Lib\ActionFilters\LogRequestAttribute.cs" />
     <Compile Include="Lib\Data\IRepository.cs" />
     <Compile Include="Lib\Data\LinqToSqlRepository.cs" />
     <Compile Include="Lib\Extensions\ExtensionsOfUrlHelper.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Lib\Startup\LinqToSqlDataContextModule.cs" />
     <Compile Include="Lib\Startup\ServiceLocator.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Request.cs" />
     <Compile Include="Models\TableLiveEdit.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

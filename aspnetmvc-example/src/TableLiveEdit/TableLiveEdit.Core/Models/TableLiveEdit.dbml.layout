@@ -8,5 +8,11 @@
         <elementListCompartment Id="46e622f6-bda2-499f-b6d8-51e13ceb474b" absoluteBounds="4.265, 2.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="c1137559-437f-4930-b52f-c807b26bd684" absoluteBounds="1.75, 2.75, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/TableLiveEditDataContext/Request" />
+      <nestedChildShapes>
+        <elementListCompartment Id="193535c2-329a-40b9-92e1-a9fd1440e7e0" absoluteBounds="1.7650000000000001, 3.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

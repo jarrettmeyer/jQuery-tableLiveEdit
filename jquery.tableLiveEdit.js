@@ -1,7 +1,7 @@
 /* jQuery.tableLiveEdit.js
 * Documentation: http://jarrettmeyer.com/portfolio/jQuery-tableLiveEdit/ 
 * License: http://jarrettmeyer.com/license/
-* Version: 1.0.4
+* Version: 1.0.5
 */
 (function($) {
     $.fn.tableLiveEdit = function(settings) {
@@ -22,7 +22,8 @@
             updatePath: "./{0}/update",
             usePostDelete: false,   // Should the delete URL be called with a POST request, instead of a DELETE request
             usePostUpdate: false,   // Should the update URL be called with a POST request, instead of a PUT request
-            useHighlight: false
+            useHighlight: false,
+            useAntiForgeryToken: false
         };
         if (settings) { $.extend(config, settings); }
         return this.each(function() {
@@ -88,10 +89,12 @@
                             e.preventDefault();
                             if (config.deleteConfirmation && !window.confirm(config.deleteConfirmation)) { return false; }
                             var link = $(this);
-                            var requestType = config.usePostDelete ? "post" : "delete";
+                            var requestType = config.usePostDelete ? "post" : "delete";                            
+                            var formData = config.useAntiForgeryToken ? link.parents("form").serialize() : "";
                             $.ajax({
                                 type: requestType,
-                                url: link.attr("href")
+                                url: link.attr("href"),
+                                data: formData
                             });
                             link.parents("tr").remove();
                         });

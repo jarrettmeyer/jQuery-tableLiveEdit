@@ -5,7 +5,10 @@
     <td><%= Html.Encode(Model.EmailAddress) %></td>
     <td>
         <%= Html.ActionLink("Edit", "Edit", new { id = Model.ContactId }, new { @class = "edit-link" }) %> |
-        <%= Html.ActionLink("Delete", "Delete", new { id = Model.ContactId }, new { @class = "delete-link" }) %>
+        <form action="<%= Url.Action("Delete", new { id = Model.ContactId }) %>" method="post" style="display:inline;">
+            <%= Html.AntiForgeryToken() %>
+            <%= Html.ActionLink("Delete", "Delete", new { id = Model.ContactId }, new { @class = "delete-link" }) %>
+        </form>
     </td>
 </tr>
 

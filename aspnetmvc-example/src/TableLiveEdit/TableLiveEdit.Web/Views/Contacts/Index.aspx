@@ -15,18 +15,10 @@
                 createPath: '/tableLiveEdit/Contacts',
                 showPath: '/tableLiveEdit/Contacts/{0}',
                 updatePath: '/tableLiveEdit/Contacts/{0}',
-                deleteConfirmation: 'You are about to delete a contact. This operation cannot be undone. Are you absolutely sure you wish to continue?'
+                deleteConfirmation: 'You are about to delete a contact. This operation cannot be undone. Are you absolutely sure you wish to continue?',
+                useAntiForgeryToken: true
             };
             $("#contacts").tableLiveEdit(options);
-            //$("#_tableLiveEdit").bind("tableLiveEdit.addFormLoaded", function() {
-            //    alert("new add form loaded");
-            //});
-            //$("#_tableLiveEdit").bind("tableLiveEdit.editFormLoaded", function() {
-            //    alert("new edit form loaded");
-            //});
-            //$("#_tableLiveEdit").bind("tableLiveEdit.formUnloaded", function() {
-            //    alert("form unloaded");
-            //});
         });
     </script>
 
